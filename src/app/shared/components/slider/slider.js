@@ -1,3 +1,5 @@
+import './style.css'
+
 function Slider(props) {
     const { onChange, value, min, max } = props;
     const onValueChange = (event) => { 

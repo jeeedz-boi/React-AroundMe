@@ -30,8 +30,7 @@ function HomePage() {
 
     new maps.Marker({
       position: center,
-      map,
-      title: "Hello World!",
+      map
     });
   };
 
@@ -90,13 +89,16 @@ function HomePage() {
               onClick={handleClick}
             />
           </div>
-          <div className='slidecontainer'>
-            <Slider
-              value={sliderValue}
-              min='1'
-              max='10'
-              onChange={handleSliderChange}
-            />
+          <div className='radius-container'>
+            <div className='slider-container'>
+              <Slider
+                value={sliderValue}
+                min='1'
+                max='10'
+                onChange={handleSliderChange}
+              />
+            </div>
+            <span>{`${sliderValue} KM.`}</span>
           </div>
         </div>
         <div className='map-container'>
