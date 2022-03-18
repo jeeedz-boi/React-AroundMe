@@ -1,18 +1,22 @@
 import imageSrc from '../../shared/assets/images/main-logo.png';
 import './style.css'
 import { useState } from "react";
-import InputField from '../../shared/components/inputField/inputField'
-import Button from '../../shared/components/button/button'
-import Slider from '../../shared/components/slider/slider';
+import { InputField } from '../../shared/components/inputField/inputField'
+import { Button } from '../../shared/components/button/button'
+import { Slider } from '../../shared/components/slider/slider';
 import { Map } from '../../shared/components/map/map'
+import { getPlaceViaGMAP } from '../../shared/services/mapService'
+import { useNavigate } from "react-router-dom";
+
 let circle
 
-function HomePage() {
+export function HomePage() {
   const [ userName, setUserName ] = useState('TEST - Scaffords')
   const [ keyword, setKeyword ] = useState('')
   const [ sliderValue, setSliderValue ] = useState('3')
   const [ center, setCenter ] = useState({})
   const defaultCenter = {lat: 13.7563, lng: 100.5018}
+  const navigate = useNavigate();
   
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects
@@ -40,9 +44,11 @@ function HomePage() {
     setKeyword(value)
   }
 
-  const handleClick = () => {
+  const handleClick = async () => {
     console.log('- on click')
     console.log('\t! calling some function')
+    const result = await getPlaceViaGMAP(center, Number(sliderValue * 1000), keyword)
+    navigate("../result", { replace: true });
   }
 
   const handleSliderChange = (value) => {
@@ -75,11 +81,11 @@ function HomePage() {
     <>
       <div className='cotaniner'>
         <div className='header'>
-          <div className='username-title'>
+          <div className='username-container'>
             <img className='image' src={imageSrc} alt=""/>
             <span>{userName}</span>
           </div>
-          <div className='keyword-field'>
+          <div className='keyword-container'>
             <InputField 
               placeholder='Enter Keyword' 
               onChange={handleChange}
@@ -114,5 +120,3 @@ function HomePage() {
     </>
   )
 }
-
-export default HomePage

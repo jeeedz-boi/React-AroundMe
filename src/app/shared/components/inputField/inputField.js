@@ -1,6 +1,6 @@
 import './style.css'
 
-function InputField(props) {
+export function InputField(props) {
     const { placeholder, onChange } = props
     const onValueChange = (event) => { 
         onChange(event.target.value)
@@ -16,5 +16,3 @@ function InputField(props) {
       </>
     )
 }
-
-export default InputField

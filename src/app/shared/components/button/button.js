@@ -1,5 +1,5 @@
 import './style.css'
-function Button(props) {
+export function Button(props) {
   const { onClick, text } = props
     return(
       <>
@@ -11,5 +11,3 @@ function Button(props) {
       </>
     )
 }
-
-export default Button

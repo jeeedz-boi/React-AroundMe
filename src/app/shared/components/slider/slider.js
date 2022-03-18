@@ -1,6 +1,6 @@
 import './style.css'
 
-function Slider(props) {
+export function Slider(props) {
     const { onChange, value, min, max } = props;
     const onValueChange = (event) => { 
         onChange(event.target.value)
@@ -19,5 +19,3 @@ function Slider(props) {
         </>
     )
 }
-
-export default Slider

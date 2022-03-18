@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function LoginPage() {
+export function LoginPage() {
     return (
       <>
         <main>
@@ -15,5 +15,3 @@ function LoginPage() {
       </>
     );
 }
-
-export default LoginPage;

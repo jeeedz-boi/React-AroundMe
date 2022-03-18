@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ProfilePage() {
+export function ProfilePage() {
     return (
       <>
         <main>
@@ -15,5 +15,3 @@ function ProfilePage() {
       </>
     );
 }
-
-export default ProfilePage;
