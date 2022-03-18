@@ -1,0 +1,38 @@
+.cotaniner {
+    /* display: flex;
+    align-items: center;
+    flex-direction: row; */
+    height: 100%;
+}
+
+.header {
+    width: 100%;
+    height: 12vh;
+    background: #9e9ea0;
+}
+
+.username-title {
+    display: flex;
+    align-items: center;
+    padding: 8px
+}
+
+.keyword-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.image {
+    height: auto;
+    width: 2rem;
+}
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
+
+.map-container {
+    width: 100%;
+    height: 88vh;
+}
