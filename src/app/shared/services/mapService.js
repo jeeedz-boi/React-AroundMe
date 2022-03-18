@@ -10,13 +10,6 @@ export const getPlaceViaGMAP = async (location, radius, keyword) => {
     };
     
     const response = await axios(config)
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
-    // .then(function (response) {
-    //     return response
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-
 }
