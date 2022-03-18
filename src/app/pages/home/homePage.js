@@ -7,6 +7,8 @@ import { Slider } from '../../shared/components/slider/slider';
 import { Map } from '../../shared/components/map/map'
 import { getPlaceViaGMAP } from '../../shared/services/mapService'
 import { useNavigate } from "react-router-dom";
+import { setLocalStorageValueByKey } from '../../shared/utilities/helper';
+import { RESULT_KEY } from '../../shared/utilities/const';
 
 let circle
 
@@ -48,6 +50,7 @@ export function HomePage() {
     console.log('- on click')
     console.log('\t! calling some function')
     const result = await getPlaceViaGMAP(center, Number(sliderValue * 1000), keyword)
+    setLocalStorageValueByKey(RESULT_KEY, result)
     navigate("../result", { replace: true });
   }
 
