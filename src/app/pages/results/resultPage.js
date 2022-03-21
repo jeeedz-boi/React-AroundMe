@@ -33,7 +33,7 @@ export function ResultPage() {
  
     return (
         <>
-            <div className="container">
+            <div className="result-main-container">
                 <div className="nav">
                     <img 
                         className="back-icon"

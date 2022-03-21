@@ -1,11 +1,11 @@
-.cotaniner {
+.result-main-container {
     /* display: flex;
     align-items: center;
     flex-direction: row; */
     height: 100%;
 }
 
-.nav {
+.result-main-container .nav {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -14,10 +14,14 @@
     background: hsl(0, 0%, 18.82%);
 }
 
-.back-icon {
+.result-main-container .back-icon {
     width: 2rem;
 }
 
-.result-container {
+.result-main-container .result-container {
     padding: 1rem;
+}
+
+.result-main-container span {
+    color: aliceblue;
 }
