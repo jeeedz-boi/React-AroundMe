@@ -1,4 +1,4 @@
-import { closeIcon, downIcon, gMapsIcon, infoIcon, openIcon, ratingIcon } from "../../assets/images";
+import { closeIcon, arrowIcon, gMapsIcon, infoIcon, openIcon, ratingIcon } from "../../assets/images";
 import { IMAGE_SWITCH, VALID_TYPES } from "../../utilities/const";
 import { distanceFormat, translateBusinessStatus } from "../../utilities/helper";
 import './style.css'
@@ -29,7 +29,7 @@ export const ResultList = (props) => {
         <div className="result-header">
         <img 
             className="down-icon"
-            src={downIcon}
+            src={arrowIcon}
             alt=""
             onClick={() => onHandleClick(element)}
         />

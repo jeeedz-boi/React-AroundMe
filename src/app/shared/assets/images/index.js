@@ -1,6 +1,6 @@
 import mainIcon from "./main-logo.png"
 import backIcon from "./arrows/left-arrow.png"
-import downIcon from "./arrows/down-arrow.png"
+import arrowIcon from "./arrows/down-arrow.png"
 import openIcon from "./details/open-icon.png"
 import closeIcon from "./details/close-icon.png"
 import infoIcon from "./details/info-icon.png"
@@ -18,7 +18,7 @@ import storeIcon from "./location-types/store-icon.png"
 export { 
     mainIcon,
     backIcon,
-    downIcon,
+    arrowIcon,
     openIcon,
     closeIcon,
     infoIcon,
