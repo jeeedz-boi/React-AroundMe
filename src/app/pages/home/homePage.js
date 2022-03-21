@@ -8,7 +8,7 @@ import { Map } from '../../shared/components/map/map'
 import { getPlaceViaGMAP } from '../../shared/services/mapService'
 import { useNavigate } from "react-router-dom";
 import { setLocalStorageValueByKey } from '../../shared/utilities/helper';
-import { RESULT_KEY } from '../../shared/utilities/const';
+import { RESULT_KEY, SEARCH_KEYWORD } from '../../shared/utilities/const';
 
 let circle
 
@@ -44,13 +44,16 @@ export function HomePage() {
     console.log('- on change');
     console.log('\t! set keyword', value)
     setKeyword(value)
+    setLocalStorageValueByKey(SEARCH_KEYWORD, value)
   }
 
   const handleClick = async () => {
     console.log('- on click')
-    console.log('\t! calling some function')
+    console.log('\t! calling getPlaceViaGMAP')
     const result = await getPlaceViaGMAP(center, Number(sliderValue * 1000), keyword)
+    console.log('\t! calling setLocalStorageValueByKey')
     setLocalStorageValueByKey(RESULT_KEY, result)
+    console.log('\t! navigate to /result')
     navigate("../result", { replace: true });
   }
 
