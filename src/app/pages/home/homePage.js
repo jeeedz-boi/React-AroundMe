@@ -1,4 +1,3 @@
-import imageSrc from '../../shared/assets/images/main-logo.png';
 import './style.css'
 import { useState } from "react";
 import { InputField } from '../../shared/components/inputField/inputField'
@@ -9,6 +8,7 @@ import { getPlaceViaGMAP } from '../../shared/services/mapService'
 import { useNavigate } from "react-router-dom";
 import { setLocalStorageValueByKey } from '../../shared/utilities/helper';
 import { RESULT_KEY, SEARCH_KEYWORD } from '../../shared/utilities/const';
+import { mainIcon } from '../../shared/assets/images';
 
 let circle
 
@@ -88,7 +88,7 @@ export function HomePage() {
       <div className='cotaniner'>
         <div className='header'>
           <div className='username-container'>
-            <img className='image' src={imageSrc} alt=""/>
+            <img className='image' src={mainIcon} alt=""/>
             <span>{userName}</span>
           </div>
           <div className='keyword-container'>
