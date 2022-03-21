@@ -6,4 +6,5 @@
 html, body, #app, #app>div, #root, .App{
   font-family: myFirstFont;
   height: 100vh;
+  background: #ecf0f1;
 }
