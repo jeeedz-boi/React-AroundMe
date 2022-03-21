@@ -1,9 +1,10 @@
 import { RESULT_KEY, SEARCH_KEYWORD } from "../../shared/utilities/const"
 import { getLocalStorageValueByKey } from "../../shared/utilities/helper"
-import backIcon from "../../shared/assets/images/left-arrow.png"
+import { backIcon} from "../../shared/assets/images"
 import './style.css'
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import { ResultList } from "../../shared/components/resultList/resultList"
 
 export function ResultPage() {
     console.log('- Navigate to ResultPage')
@@ -15,15 +16,13 @@ export function ResultPage() {
     console.log('\t! result', result)
     
     const setDetailVisiblity = (element) => {
-        console.log('- onClick elemnt', element)
+        console.log('- onClick toggle visiblity', element)
         const targetIndex = element.index;
         const targetObj = displayResult[targetIndex]
         const resultObj = { ...targetObj, detailVisible: !targetObj.detailVisible }
         const resultArray = displayResult
         resultArray[targetIndex] = resultObj
-        console.log('before set', displayResult)
         setDisplayResult([...resultArray])
-        console.log('after set', displayResult)
     }
     const onChangeRoute = (target) => {
         switch (target) {
@@ -53,29 +52,4 @@ export function ResultPage() {
             </div>
         </>
     )
-}
-
-const ResultList = (props) => {
-    console.log('re-render')
-    const { result, onHandleClick } = props;
-    const listItems = result.map((element) =>
-    <div key={element.name.toString()}>
-        <button onClick={() => onHandleClick(element)}>DOWN</button>
-        <span>
-            {element.name}
-        </span>
-        { element.detailVisible &&
-            <ul>
-                <li>{element.business_status}</li>
-                <li>{element.opening_hours.open_now ? 'OPEN' : 'CLOSE'}</li>
-                <li>{element.rating}</li>
-                <li>{element.location.lat}</li>
-                <li>{element.location.lng}</li>
-            </ul>
-        }
-    </div>
-    );
-    return (
-        <>{listItems}</>
-    );
 }

@@ -1,0 +1,61 @@
+.result-list .result-header {
+    display: flex;
+    align-items: center;
+}
+
+.result-list .nobull {
+    list-style-type: none;
+}
+
+.result-list .nobull li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.result-list .nobull li img {
+    height: 1rem;
+}
+
+.result-list .close-status span {
+    color: black;
+}
+
+.result-list .sub-status {
+    color: rgb(219, 97, 27) !important;
+    margin-left: 2rem !important;
+    font-size: 14px !important;
+}
+    
+.result-list .close-status .main-status {
+    display: flex;
+    align-items: center;
+}
+
+.result-list .close-status .main-status span {
+    margin-left: 0.5rem
+}
+
+.result-list span {
+    color: rgb(133, 133, 133);
+    /* margin-left: 0.5rem; */
+}
+
+.result-list .name-and-types {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+}
+
+.result-list .down-icon {
+    height: 1.5rem;
+}
+
+.result-list .image-type {
+    height: 1.5rem;
+}
+
+.result-list .image-list {
+    display: flex;
+    gap: 0.5em;
+}
