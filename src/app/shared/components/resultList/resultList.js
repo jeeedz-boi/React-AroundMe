@@ -5,17 +5,18 @@ import './style.css'
 
 const ImageList = (props) => {
     const { types } = props
-    const ReturnElement = types.map((type, index) =>
-        <div key={type+index}>
-            { VALID_TYPES.includes(type) &&
-                <img 
-                    className="image-type"
-                    src={IMAGE_SWITCH[type]}
-                    alt=""
-                />
-            }
-        </div> 
-    )
+    const ReturnElement = types.map((type, index) => {
+        if (VALID_TYPES.includes(type)) {
+            return <div key={type+index}>            
+                    <img 
+                        className="image-type"
+                        src={IMAGE_SWITCH[type]}
+                        alt=""
+                    />
+                </div> 
+        }
+        return null
+    })
     return (
         <div className='image-list'>{ReturnElement}</div>
     )
