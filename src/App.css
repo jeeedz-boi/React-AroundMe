@@ -8,3 +8,9 @@ html, body, #app, #app>div, #root, .App{
   height: 100vh;
   background: #ecf0f1;
 }
+
+hr {
+  width: 90%;
+  border: 1px solid rgb(160, 160, 160);
+  border-radius: 5px;
+}
