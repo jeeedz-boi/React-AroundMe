@@ -1,6 +1,10 @@
 import mainIcon from "./main-logo.png"
+
 import backIcon from "./arrows/left-arrow.png"
 import arrowIcon from "./arrows/down-arrow.png"
+import arrowWhiteIcon from "./arrows/down-arrow-white.png"
+import shortcutIcon from "./arrows/shortcut-arrow.png"
+
 import openIcon from "./details/open-icon.png"
 import closeIcon from "./details/close-icon.png"
 import infoIcon from "./details/info-icon.png"
@@ -32,4 +36,6 @@ export {
     restaurantIcon,
     shoppingIcon,
     storeIcon,
+    arrowWhiteIcon,
+    shortcutIcon,
 }

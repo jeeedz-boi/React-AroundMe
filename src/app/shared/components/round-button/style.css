@@ -1,0 +1,52 @@
+.rounded-button .button {
+    background-color: hsl(0, 0%, 18.82%);
+    border: none;
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    align-items: center;
+  }
+
+.rounded-button .button5 {
+    border-radius: 50%;
+}
+
+.rounded-button img {
+    width: 3rem;
+    border-radius: 50%;
+    background: hsl(0, 0%, 18.82%);
+}
+.rounded-button .image-up {
+    transform: rotate(0deg);
+}
+
+.rounded-button .image-down {
+    transform: rotate(180deg);
+}
+
+.rounded-light-button .button {
+    border: none;
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    align-items: center;
+  }
+
+.rounded-light-button .button5 {
+    border-radius: 50%;
+}
+
+.rounded-light-button img {
+    width: 2.5rem;
+    border-radius: 50%;
+    background: rgb(95, 95, 95);
+}
+.rounded-light-button .image-up {
+    transform: rotate(0deg);
+}
+
+.rounded-light-button .image-down {
+    transform: rotate(180deg);
+}

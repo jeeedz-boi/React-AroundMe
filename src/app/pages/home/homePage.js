@@ -8,7 +8,8 @@ import { getPlaceViaGMAP } from '../../shared/services/mapService'
 import { useNavigate } from "react-router-dom";
 import { setLocalStorageValueByKey } from '../../shared/utilities/helper';
 import { RESULT_KEY, SEARCH_KEYWORD } from '../../shared/utilities/const';
-import { mainIcon } from '../../shared/assets/images';
+import { arrowWhiteIcon, barIcon, hospitalIcon, mainIcon, poiIcon, shoppingIcon, storeIcon } from '../../shared/assets/images';
+import { RoundedButton } from '../../shared/components/round-button/roundButton';
 
 let circle
 
@@ -17,6 +18,7 @@ export function HomePage() {
   const [ keyword, setKeyword ] = useState('')
   const [ sliderValue, setSliderValue ] = useState('3')
   const [ center, setCenter ] = useState({})
+  const [ isQuickKeywordActive, setQuickKeywordActive ] = useState(false)
   const defaultCenter = {lat: 13.7563, lng: 100.5018}
   const navigate = useNavigate();
   
@@ -40,14 +42,14 @@ export function HomePage() {
     });
   };
 
-  const handleChange = (value) => {
+  const handleKeywordChange = (value) => {
     console.log('- on change');
     console.log('\t! set keyword', value)
     setKeyword(value)
     setLocalStorageValueByKey(SEARCH_KEYWORD, value)
   }
 
-  const handleClick = async () => {
+  const onHomepageSubmit = async () => {
     console.log('- on click')
     console.log('\t! calling getPlaceViaGMAP')
     const result = await getPlaceViaGMAP(center, Number(sliderValue * 1000), keyword)
@@ -64,6 +66,16 @@ export function HomePage() {
     if (circle) {
       circle.setRadius(Number(value * 1000));
     }
+  }
+
+  const onToggleKeyword = () => { 
+    setQuickKeywordActive(!isQuickKeywordActive)
+  }
+
+  const onClickShortcut = (keyword) => {
+    console.log('- onClickShortcut', keyword)
+    handleKeywordChange(keyword)
+    onHomepageSubmit()
   }
 
   const options = {
@@ -85,7 +97,7 @@ export function HomePage() {
 
   return(
     <>
-      <div className='cotaniner'>
+      <div className='home-cotaniner'>
         <div className='header'>
           <div className='username-container'>
             <img className='image' src={mainIcon} alt=""/>
@@ -94,11 +106,12 @@ export function HomePage() {
           <div className='keyword-container'>
             <InputField 
               placeholder='Enter Keyword' 
-              onChange={handleChange}
+              value={keyword}
+              onChange={handleKeywordChange}
             />
             <Button 
               text='SEARCH' 
-              onClick={handleClick}
+              onClick={onHomepageSubmit}
             />
           </div>
           <div className='radius-container'>
@@ -121,6 +134,37 @@ export function HomePage() {
             zoom={13}
             radius={sliderValue}
           />
+          <div className="shortcut-main-container">
+            { isQuickKeywordActive &&
+              <div className="shortcut-container">
+                <RoundedButton 
+                  imageSource={shoppingIcon}
+                  onClick={() => onClickShortcut('grocery')}
+                  small
+                />
+                <RoundedButton 
+                  imageSource={barIcon}
+                  onClick={() => onClickShortcut('bar')}
+                  small
+                />
+                <RoundedButton 
+                  imageSource={hospitalIcon}
+                  onClick={() => onClickShortcut('hospital')}
+                  small
+                />
+                <RoundedButton 
+                  imageSource={poiIcon}
+                  onClick={() => onClickShortcut('point_of_interest')}
+                  small
+                />
+              </div>
+            }
+            <RoundedButton 
+              imageSource={arrowWhiteIcon}
+              isActive={isQuickKeywordActive}
+              onClick={onToggleKeyword}
+            />
+          </div>
         </div>
       </div>
     </>

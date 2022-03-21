@@ -1,7 +1,7 @@
 import './style.css'
 
 export function InputField(props) {
-    const { placeholder, onChange } = props
+    const { placeholder, onChange, value } = props
     const onValueChange = (event) => { 
         onChange(event.target.value)
     }
@@ -10,6 +10,7 @@ export function InputField(props) {
         <input 
             className="go-full" 
             type="text" 
+            value={value}
             placeholder={placeholder} 
             onChange={onValueChange}
         />
