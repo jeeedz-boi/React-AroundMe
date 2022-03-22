@@ -10,14 +10,18 @@ import { getLocalStorageValueByKey, setLocalStorageValueByKey } from '../../shar
 import { LOCATION, RESULT_KEY, SEARCH_KEYWORD } from '../../shared/utilities/const';
 import { arrowWhiteIcon, barIcon, hospitalIcon, mainIcon, poiIcon, searchIcon, shoppingIcon } from '../../shared/assets/images';
 import { RoundedButton } from '../../shared/components/round-button/roundButton';
-
+import  { isEmpty } from 'lodash'
 let circle
+
+const getLocationFronLocalStorage = () => {
+  return getLocalStorageValueByKey(LOCATION) || {}
+}
 
 export function HomePage() {
   const [ userName, setUserName ] = useState('TEST - Scaffords')
   const [ keyword, setKeyword ] = useState('')
   const [ sliderValue, setSliderValue ] = useState('3')
-  const [ center, setCenter ] = useState({})
+  const [ center, setCenter ] = useState(getLocationFronLocalStorage())
   const [ isQuickKeywordActive, setQuickKeywordActive ] = useState(false)
   const defaultCenter = {lat: 13.7563, lng: 100.5018}
   const navigate = useNavigate();
@@ -84,16 +88,20 @@ export function HomePage() {
   };
   
   function success(pos) {
+    console.log('! get location from browser')
     const crd = pos.coords;
     const location = { lat: crd.latitude, lng: crd.longitude}
     setCenter(location)
+    setLocalStorageValueByKey(LOCATION, location)
   }
   
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
   
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  if (isEmpty(center)) {
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
 
   return(
     <>
