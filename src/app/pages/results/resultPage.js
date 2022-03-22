@@ -7,13 +7,12 @@ import { useState } from "react"
 import { ResultList } from "../../shared/components/resultList/resultList"
 
 export function ResultPage() {
-    console.log('- Navigate to ResultPage')
+    console.log('- ResultPage render')
     const navigate = useNavigate();
     const searchKeyword = getLocalStorageValueByKey(SEARCH_KEYWORD) || 'UNKNOWN'
     const result = getLocalStorageValueByKey(RESULT_KEY)
     const transformedResult = result.map((res, index) => { return {...res, index: index, detailVisible: false }})
     const [ displayResult, setDisplayResult ] = useState(transformedResult)
-    console.log('\t! result', result)
     
     const setDetailVisiblity = (element) => {
         const targetIndex = element.index;
