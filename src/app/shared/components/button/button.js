@@ -1,14 +1,14 @@
 import './style.css'
 export function Button(props) {
-  const { onClick, text, imageSource } = props
+  const { onClick, text, imageSource, isBulk, type } = props
     return(
       <div className="button-main">
           <button 
-            className="go-full"
-            type="button"
+            className={isBulk ? "go-full-and-bulk" : "go-full"}
+            type={type}
             onClick={onClick}
           >
-            {text}
+            <span>{text}</span>
             <img
               className="button-image"
               onClick={onClick}

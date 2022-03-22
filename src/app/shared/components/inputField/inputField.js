@@ -1,15 +1,17 @@
 import './style.css'
 
 export function InputField(props) {
-    const { placeholder, onChange, value } = props
+    const { placeholder, onChange, value, id, name, type } = props
     const onValueChange = (event) => { 
-        onChange(event.target.value)
+      onChange(event)
     }
     return(
       <div className="input-field">
         <input 
+            id={id}
+            name={name}
             className="go-full" 
-            type="text" 
+            type={type}
             value={value}
             placeholder={placeholder} 
             onChange={onValueChange}
