@@ -6,9 +6,9 @@ import { Slider } from '../../shared/components/slider/slider';
 import { Map } from '../../shared/components/map/map'
 import { getPlaceViaGMAP } from '../../shared/services/mapService'
 import { useNavigate } from "react-router-dom";
-import { setLocalStorageValueByKey } from '../../shared/utilities/helper';
-import { RESULT_KEY, SEARCH_KEYWORD } from '../../shared/utilities/const';
-import { arrowWhiteIcon, barIcon, hospitalIcon, mainIcon, poiIcon, shoppingIcon, storeIcon } from '../../shared/assets/images';
+import { getLocalStorageValueByKey, setLocalStorageValueByKey } from '../../shared/utilities/helper';
+import { LOCATION, RESULT_KEY, SEARCH_KEYWORD } from '../../shared/utilities/const';
+import { arrowWhiteIcon, barIcon, hospitalIcon, mainIcon, poiIcon, searchIcon, shoppingIcon } from '../../shared/assets/images';
 import { RoundedButton } from '../../shared/components/round-button/roundButton';
 
 let circle
@@ -21,7 +21,6 @@ export function HomePage() {
   const [ isQuickKeywordActive, setQuickKeywordActive ] = useState(false)
   const defaultCenter = {lat: 13.7563, lng: 100.5018}
   const navigate = useNavigate();
-  
   const handleApiLoaded = (map, maps) => {
     // use map and maps objects
     console.log('- on handleApiLoaded map');  
@@ -49,7 +48,7 @@ export function HomePage() {
     setLocalStorageValueByKey(SEARCH_KEYWORD, value)
   }
 
-  const onHomepageSubmit = async () => {
+  const onHomepageSubmit = async (keyword) => {
     console.log('- on click')
     console.log('\t! calling getPlaceViaGMAP')
     const result = await getPlaceViaGMAP(center, Number(sliderValue * 1000), keyword)
@@ -75,7 +74,7 @@ export function HomePage() {
   const onClickShortcut = (keyword) => {
     console.log('- onClickShortcut', keyword)
     handleKeywordChange(keyword)
-    onHomepageSubmit()
+    onHomepageSubmit(keyword)
   }
 
   const options = {
@@ -86,7 +85,8 @@ export function HomePage() {
   
   function success(pos) {
     const crd = pos.coords;
-    setCenter({ lat: crd.latitude, lng: crd.longitude})
+    const location = { lat: crd.latitude, lng: crd.longitude}
+    setCenter(location)
   }
   
   function error(err) {
@@ -110,8 +110,9 @@ export function HomePage() {
               onChange={handleKeywordChange}
             />
             <Button 
-              text='SEARCH' 
-              onClick={onHomepageSubmit}
+              // text='SEARCH'
+              imageSource={searchIcon} 
+              onClick={() => onHomepageSubmit(keyword)}
             />
           </div>
           <div className='radius-container'>
@@ -123,7 +124,7 @@ export function HomePage() {
                 onChange={handleSliderChange}
               />
             </div>
-            <span>{`${sliderValue} KM.`}</span>
+            <span className={'distance-text'}>{`${sliderValue} KM.`}</span>
           </div>
         </div>
         <div className='map-container'>

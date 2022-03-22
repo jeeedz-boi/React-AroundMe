@@ -6,7 +6,7 @@ export function InputField(props) {
         onChange(event.target.value)
     }
     return(
-      <>
+      <div className="input-field">
         <input 
             className="go-full" 
             type="text" 
@@ -14,6 +14,6 @@ export function InputField(props) {
             placeholder={placeholder} 
             onChange={onValueChange}
         />
-      </>
+      </div>
     )
 }

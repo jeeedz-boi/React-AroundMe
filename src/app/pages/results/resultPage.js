@@ -16,7 +16,6 @@ export function ResultPage() {
     console.log('\t! result', result)
     
     const setDetailVisiblity = (element) => {
-        console.log('- onClick toggle visiblity', element)
         const targetIndex = element.index;
         const targetObj = displayResult[targetIndex]
         const resultObj = { ...targetObj, detailVisible: !targetObj.detailVisible }

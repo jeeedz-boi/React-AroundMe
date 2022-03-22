@@ -1,13 +1,21 @@
 import './style.css'
 export function Button(props) {
-  const { onClick, text } = props
+  const { onClick, text, imageSource } = props
     return(
-      <>
-        <button 
-          className="go-small"
-          type="button"
-          onClick={onClick}
-        >{text}</button>
-      </>
+      <div className="button-main">
+          <button 
+            className="go-full"
+            type="button"
+            onClick={onClick}
+          >
+            {text}
+            <img
+              className="button-image"
+              onClick={onClick}
+              src={imageSource}
+              alt=''
+          />
+          </button>
+      </div>
     )
 }

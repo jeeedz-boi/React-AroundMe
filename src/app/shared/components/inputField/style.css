@@ -1,3 +1,14 @@
-.go-small {
-    width: 50%;
+.input-field {
+    /* width: 100%; */
+    flex-grow: 2;
+}
+.input-field .go-full {
+    height: 25px;
+    width: 100%;
+    margin:-3px;
+    border-radius: 5px;
+}
+
+.input-field input {
+    text-indent: 10px;
 }
