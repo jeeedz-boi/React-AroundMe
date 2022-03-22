@@ -1,0 +1,36 @@
+.login-container {
+    height: 100%;
+}
+
+.login-container .content-container {
+    padding: 10rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container img {
+    height: auto;
+    width: 60%;
+}
+
+.login-container .button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6rem;
+    gap: 1rem;
+    width: 60%;
+}
+
+.error-text {
+    height: 1rem;
+}
+
+.error-text span {
+    color: #fe6600;
+    font-size: 12px;
+}
+
+.login-button-container {
+    margin-top: 1rem
+}

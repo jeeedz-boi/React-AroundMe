@@ -28,3 +28,54 @@ export const translateBusinessStatus = (value) => {
         default: return value;
     }
 }   
+
+
+export const loginValidate = (values) => {
+    const errors = {};
+    if (!values.username) {
+      errors.username = "Required";
+    } else if (values.username.length > 8) {
+      errors.username = "Must be 8 characters or less";
+    }
+  
+    if (!values.password) {
+      errors.password = "Required";
+    } else if (values.password.length > 8) {
+      errors.password = "Must be 8 characters or less";
+    }
+  
+    return errors;
+}
+
+export const registerValidate = (values) => {
+    const errors = {};
+    if (!values.username) {
+      errors.username = "Required";
+    } else if (values.username.length > 8) {
+      errors.username = "Must be 8 characters or less";
+    }
+  
+    if (!values.displayName) {
+      errors.displayName = "Required";
+    } else if (values.displayName.length > 8) {
+      errors.displayName = "Must be 8 characters or less";
+    }
+  
+    if (!values.password1) {
+      errors.password1 = "Required";
+    } else if (values.password1.length > 8) {
+      errors.password1 = "Must be 8 characters or less";
+    }
+
+    if (!values.password2) {
+      errors.password2 = "Required";
+    } else if (values.password2.length > 8) {
+      errors.password2 = "Must be 8 characters or less";
+    }
+
+    if (values.password1 !== values.password2) {
+      errors.password2 = "Password not matched";
+    }
+  
+    return errors;
+}

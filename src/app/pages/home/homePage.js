@@ -46,10 +46,11 @@ export function HomePage() {
   };
 
   const handleKeywordChange = (value) => {
+    const setValue = value.target.value
     console.log('- on change');
-    console.log('\t! set keyword', value)
-    setKeyword(value)
-    setLocalStorageValueByKey(SEARCH_KEYWORD, value)
+    console.log('\t! set keyword', setValue)
+    setKeyword(setValue)
+    setLocalStorageValueByKey(SEARCH_KEYWORD, setValue)
   }
 
   const onHomepageSubmit = async (keyword) => {
@@ -119,6 +120,7 @@ export function HomePage() {
             />
             <Button 
               // text='SEARCH'
+              type="button"
               imageSource={searchIcon} 
               onClick={() => onHomepageSubmit(keyword)}
             />

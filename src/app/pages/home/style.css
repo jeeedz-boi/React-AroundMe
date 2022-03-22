@@ -1,20 +1,17 @@
 .home-cotaniner {
-    /* display: flex;
-    align-items: center;
-    flex-direction: row; */
     height: 100%;
 }
 
 .home-cotaniner .header {
     width: 100%;
-    height: 14vh;
+    height: 15vh;
     background: hsl(0, 0%, 18.82%);
 }
 
 .home-cotaniner .username-container {
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: 8px 10px 8px 10px;
     gap: 1em;
 }
 
@@ -45,11 +42,12 @@
 
 .home-cotaniner .map-container {
     width: 100%;
-    height: 88vh;
+    height: 90vh;
 }
 
 .home-cotaniner span {
     color: aliceblue;
+    font-weight: bold;
 }
 
 .home-cotaniner .shortcut-main-container  {
