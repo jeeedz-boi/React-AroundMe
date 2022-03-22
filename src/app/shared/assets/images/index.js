@@ -1,4 +1,5 @@
 import mainIcon from "./main-logo.png"
+import searchIcon from "./search-icon.png"
 
 import backIcon from "./arrows/left-arrow.png"
 import arrowIcon from "./arrows/down-arrow.png"
@@ -38,4 +39,5 @@ export {
     storeIcon,
     arrowWhiteIcon,
     shortcutIcon,
+    searchIcon,
 }
