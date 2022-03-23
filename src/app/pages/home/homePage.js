@@ -7,7 +7,7 @@ import { Map } from '../../shared/components/map/map'
 import { getPlaceViaGMAP } from '../../shared/services/mapService'
 import { useNavigate } from "react-router-dom";
 import { getLocalStorageValueByKey, setLocalStorageValueByKey } from '../../shared/utilities/helper';
-import { LOCATION, RESULT_KEY, SEARCH_KEYWORD } from '../../shared/utilities/const';
+import { ACCOUNT, LOCATION, RESULT, SEARCH_KEYWORD } from '../../shared/utilities/const';
 import { arrowWhiteIcon, barIcon, hospitalIcon, mainIcon, poiIcon, searchIcon, shoppingIcon } from '../../shared/assets/images';
 import { RoundedButton } from '../../shared/components/round-button/roundButton';
 import  { isEmpty } from 'lodash'
@@ -18,7 +18,7 @@ const getLocationFronLocalStorage = () => {
 }
 
 export function HomePage() {
-  const [ userName, setUserName ] = useState('TEST - Scaffords')
+  const { displayName} = getLocalStorageValueByKey(ACCOUNT)
   const [ keyword, setKeyword ] = useState('')
   const [ sliderValue, setSliderValue ] = useState('3')
   const [ center, setCenter ] = useState(getLocationFronLocalStorage())
@@ -48,19 +48,30 @@ export function HomePage() {
   const handleKeywordChange = (value) => {
     const setValue = value.target.value
     console.log('- on change');
-    console.log('\t! set keyword', setValue)
-    setKeyword(setValue)
-    setLocalStorageValueByKey(SEARCH_KEYWORD, setValue)
+    setStateKeyword(setValue)
   }
 
-  const onHomepageSubmit = async (keyword) => {
+  const setStateKeyword = (value) => {
+    console.log('\t! set keyword', value)
+    setKeyword(value)
+  }
+
+  const onHomepageSubmit = async (keyword, location) => {
     console.log('- on click')
     console.log('\t! calling getPlaceViaGMAP')
     const result = await getPlaceViaGMAP(center, Number(sliderValue * 1000), keyword)
-    console.log('\t! calling setLocalStorageValueByKey')
-    setLocalStorageValueByKey(RESULT_KEY, result)
+
+    updateLocalStorage(result, keyword, location)
+    
     console.log('\t! navigate to /result')
     navigate("../result", { replace: true });
+  }
+
+  const updateLocalStorage = (result, keyword, location) => {
+    console.log('\t! calling updateLocalStorage')
+    setLocalStorageValueByKey(RESULT, result)
+    setLocalStorageValueByKey(SEARCH_KEYWORD, keyword)
+    setLocalStorageValueByKey(LOCATION, location)
   }
 
   const handleSliderChange = (value) => {
@@ -78,7 +89,7 @@ export function HomePage() {
 
   const onClickShortcut = (keyword) => {
     console.log('- onClickShortcut', keyword)
-    handleKeywordChange(keyword)
+    setStateKeyword(keyword)
     onHomepageSubmit(keyword)
   }
 
@@ -93,7 +104,6 @@ export function HomePage() {
     const crd = pos.coords;
     const location = { lat: crd.latitude, lng: crd.longitude}
     setCenter(location)
-    setLocalStorageValueByKey(LOCATION, location)
   }
   
   function error(err) {
@@ -110,7 +120,7 @@ export function HomePage() {
         <div className='header'>
           <div className='username-container'>
             <img className='image' src={mainIcon} alt=""/>
-            <span>{userName}</span>
+            <span>{displayName}</span>
           </div>
           <div className='keyword-container'>
             <InputField 
@@ -119,10 +129,9 @@ export function HomePage() {
               onChange={handleKeywordChange}
             />
             <Button 
-              // text='SEARCH'
               type="button"
               imageSource={searchIcon} 
-              onClick={() => onHomepageSubmit(keyword)}
+              onClick={() => onHomepageSubmit(keyword, center)}
             />
           </div>
           <div className='radius-container'>
