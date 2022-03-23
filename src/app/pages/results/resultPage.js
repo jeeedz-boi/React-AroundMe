@@ -1,16 +1,16 @@
-import { RESULT_KEY, SEARCH_KEYWORD } from "../../shared/utilities/const"
+import { RESULT, SEARCH_KEYWORD } from "../../shared/utilities/const"
 import { getLocalStorageValueByKey } from "../../shared/utilities/helper"
 import { backIcon} from "../../shared/assets/images"
 import './style.css'
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { memo, useState } from "react"
 import { ResultList } from "../../shared/components/resultList/resultList"
 
-export function ResultPage() {
+export const ResultPage = memo(() => {
     console.log('- ResultPage render')
     const navigate = useNavigate();
     const searchKeyword = getLocalStorageValueByKey(SEARCH_KEYWORD) || 'UNKNOWN'
-    const result = getLocalStorageValueByKey(RESULT_KEY)
+    const result = getLocalStorageValueByKey(RESULT)
     const transformedResult = result.map((res, index) => { return {...res, index: index, detailVisible: false }})
     const [ displayResult, setDisplayResult ] = useState(transformedResult)
     
@@ -50,4 +50,4 @@ export function ResultPage() {
             </div>
         </>
     )
-}
+})
