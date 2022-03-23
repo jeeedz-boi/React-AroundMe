@@ -11,7 +11,6 @@ export const CustomModal = (props) => {
         <Modal
           show={isShow}
           onHide={onHide}
-          keyboard={false}
           className='custom-modal'
           centered
         >
