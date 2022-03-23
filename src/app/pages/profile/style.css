@@ -1,0 +1,11 @@
+.profile-page-container {
+    height: 100%;
+}
+
+.profile-page-container .logout-container {
+    position: absolute;
+    width: 80%;
+    bottom: 3px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

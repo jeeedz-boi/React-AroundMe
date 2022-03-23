@@ -18,7 +18,7 @@ const getLocationFronLocalStorage = () => {
 }
 
 export function HomePage() {
-  const { displayName} = getLocalStorageValueByKey(ACCOUNT)
+  const { displayName} = getLocalStorageValueByKey(ACCOUNT) || {}
   const [ keyword, setKeyword ] = useState('')
   const [ sliderValue, setSliderValue ] = useState('3')
   const [ center, setCenter ] = useState(getLocationFronLocalStorage())
@@ -64,7 +64,7 @@ export function HomePage() {
     updateLocalStorage(result, keyword, location)
     
     console.log('\t! navigate to /result')
-    navigate("../result", { replace: true });
+    onChangeRoute('next')
   }
 
   const updateLocalStorage = (result, keyword, location) => {
@@ -91,6 +91,15 @@ export function HomePage() {
     console.log('- onClickShortcut', keyword)
     setStateKeyword(keyword)
     onHomepageSubmit(keyword)
+  }
+
+  const onChangeRoute = (target) => {
+    switch (target) {
+      case 'next': navigate("../result", { replace: true }); break;
+      case 'profile': navigate("../profile", { replace: true }); break;
+      case 'prev': navigate("../login", { replace: true }); break;
+      default: navigate("../", { replace: true })
+    }
   }
 
   const options = {
@@ -120,7 +129,7 @@ export function HomePage() {
         <div className='header'>
           <div className='username-container'>
             <img className='image' src={mainIcon} alt=""/>
-            <span>{displayName}</span>
+            <span onClick={() => onChangeRoute('profile')} >{displayName || 'UNKNOWN'}</span>
           </div>
           <div className='keyword-container'>
             <InputField 

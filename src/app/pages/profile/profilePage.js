@@ -1,17 +1,28 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../../shared/components/button/button';
+import './style.css'
 
 export function ProfilePage() {
-    return (
-      <>
-        <main>
-          <h2>Template</h2>
-          <p>
-            ProfilePage
-          </p>
-        </main>
-        <nav>
-          <Link to="/">Home</Link>
-        </nav>
-      </>
-    );
+  const navigate = useNavigate();
+  navigate("../login", { replace: true });
+
+  const onChangeRoute = (target) => {
+    switch (target) {
+      case 'next': navigate("../result", { replace: true }); break;
+      case 'login': navigate("../login", { replace: true }); break;
+      default: navigate("../profile", { replace: true })
+    }
+  }
+
+  return (
+    <div className="profile-page-container">
+      <div className="logout-container">
+        <Button
+          onClick={onChangeRoute}
+          isBulk
+          text={'Logout'}
+        />
+      </div>
+    </div>
+  );
 }
