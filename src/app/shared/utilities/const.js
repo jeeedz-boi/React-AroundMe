@@ -2,9 +2,10 @@ import { barIcon, foodIcon, healthIcon, hospitalIcon, poiIcon, restaurantIcon, s
 
 export const GMAP_KEY = process.env.REACT_APP_G_KEY
 
-export const RESULT_KEY = 'ls-result'
+export const RESULT = 'ls-result'
 export const SEARCH_KEYWORD = 'ls-keyword'
 export const LOCATION = 'ls-location'
+export const ACCOUNT = 'ls-account'
 
 export const IMAGE_SWITCH = {
     hospital: hospitalIcon, 
